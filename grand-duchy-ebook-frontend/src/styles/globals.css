@@ -15,7 +15,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* user-select: none; */
 }
 
 body {
@@ -23,6 +22,7 @@ body {
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
+  background-color: #fff6ec;
 }
 
 .titleFont {

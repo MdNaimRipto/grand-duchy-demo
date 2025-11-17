@@ -1,6 +1,8 @@
 export const colorConfig = {
   primary: "#AFAFAF",
   secondary: "#fdfbf7",
+  paper: "#fff6ec",
+  darkPaper: "#c99b6490",
   gray: "#AFAFAF",
   black: "#0B0109",
   white: "#FFFFFF",

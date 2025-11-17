@@ -16,7 +16,7 @@ const LottieLoader = () => {
       //   height: "100vh",
       // }}
       className={`${
-        uiTheme === "dark" ? "bg-customBlack" : "bg-secondary"
+        uiTheme === "dark" ? "bg-customBlack" : "bg-paper"
       } flex items-center justify-center h-screen`}
     >
       <Lottie

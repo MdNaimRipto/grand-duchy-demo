@@ -101,7 +101,7 @@ const TopNav = ({
             <Button
               onClick={handleLogout}
               sx={{
-                backgroundColor: colorConfig.primary,
+                backgroundColor: colorConfig.darkPaper,
                 color: colorConfig.white,
                 textTransform: "capitalize",
                 fontWeight: "600",
@@ -132,7 +132,7 @@ const TopNav = ({
             <Link href="/auth/login">
               <Button
                 sx={{
-                  backgroundColor: colorConfig.primary,
+                  backgroundColor: colorConfig.darkPaper,
                   color: colorConfig.white,
                   textTransform: "capitalize",
                   fontWeight: "600",
@@ -145,7 +145,7 @@ const TopNav = ({
             <Button
               onClick={handleLogout}
               sx={{
-                backgroundColor: colorConfig.primary,
+                backgroundColor: colorConfig.darkPaper,
                 color: colorConfig.white,
                 textTransform: "capitalize",
                 fontWeight: "600",
