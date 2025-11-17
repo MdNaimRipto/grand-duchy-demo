@@ -34,7 +34,7 @@
     "react-redux": "^9.2.0",
     "redux": "^5.0.1",
     "styled-components": "^6.1.14",
-    "swiper": "^11.2.5"
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
