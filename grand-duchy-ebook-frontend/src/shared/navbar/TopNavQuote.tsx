@@ -62,7 +62,7 @@ const TopNavQuote = ({
 
   return (
     <div className="col-span-2 flex items-center justify-start gap-4">
-      <FaQuoteLeft className="text-gray text-[40px] hidden md:block" />
+      <FaQuoteLeft className="text-darkPaper text-[40px] hidden md:block" />
 
       <motion.p
         key={index}

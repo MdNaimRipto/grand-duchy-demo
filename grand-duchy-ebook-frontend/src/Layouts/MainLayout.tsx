@@ -77,7 +77,7 @@ const MainLayout = ({ children }: { children: ReactElement }) => {
       <div
         className={`flex min-h-screen ${
           uiTheme === "light"
-            ? "bg-secondary text-black"
+            ? "bg-paper text-black"
             : "bg-customBlack text-secondary"
         }`}
       >

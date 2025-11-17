@@ -6,8 +6,6 @@ import {
   MdBookmarkBorder,
   MdOutlineWatchLater,
   MdOutlineSettings,
-  MdOutlineSpeakerNotes,
-  MdOutlineLocationOn,
 } from "react-icons/md";
 import { GoBook } from "react-icons/go";
 import { IoHomeOutline } from "react-icons/io5";
@@ -39,8 +37,6 @@ const Navbar = ({
     { icon: IoHomeOutline, title: "Home", path: "/" },
     { icon: GoBook, title: "Book", path: "/book/67b74628fdf15484e3fc0e96" },
     { icon: MdBookmarkBorder, title: "Bookmark", path: "/bookmark" },
-    { icon: MdOutlineSpeakerNotes, title: "Notes", path: "/adminNotes" },
-    { icon: MdOutlineLocationOn, title: "Map", path: "/" },
   ];
 
   return (
@@ -64,7 +60,7 @@ const Navbar = ({
               key={index}
               className={`text-2xl rounded-full ${
                 router.asPath === data?.path
-                  ? "bg-gray text-white"
+                  ? "bg-darkPaper text-white"
                   : uiTheme === "light"
                   ? "text-black"
                   : "text-white"
