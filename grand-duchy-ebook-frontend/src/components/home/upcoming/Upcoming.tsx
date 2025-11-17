@@ -56,8 +56,10 @@ const Upcoming = () => {
           },
         }}
       >
-        <div className="flex flex-col gap-4 w-full lg:w-2/5 items-center justify-center h-[500px] text-black">
-          <h2 className="text-5xl titleFont font-semibold">Upcoming Episode</h2>
+        <div className="flex flex-col gap-4 w-full lg:w-3/5 xl:w-2/5 items-center justify-center h-[500px] text-black">
+          <h2 className="text-5xl titleFont font-semibold text-center">
+            Upcoming Episode
+          </h2>
           <p className="w-4/5 md:w-2/5 lg:w-2/5 text-center titleFont text-sm leading-6">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo,
             laboriosam!

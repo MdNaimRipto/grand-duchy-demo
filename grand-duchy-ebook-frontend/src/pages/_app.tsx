@@ -3,14 +3,15 @@ import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { SessionProvider } from "next-auth/react";
+import { store } from "@/redux/store";
+import AuthContext, { useUserContext } from "@/context/AuthContext";
+import { Provider } from "react-redux";
 
 // ? Styles Import
 import "../styles/globals.css";
-import { Provider } from "react-redux";
-import { store } from "@/redux/store";
-import AuthContext, { useUserContext } from "@/context/AuthContext";
-import { apiConfig } from "@/configs/apiConfig";
-import { IUser } from "@/types/userTypes";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 
 // import Loader from "@/components/common/Loader";
 
