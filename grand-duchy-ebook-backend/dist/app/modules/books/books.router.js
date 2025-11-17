@@ -1,0 +1,22 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.BooksRouter = void 0;
+const express_1 = __importDefault(require("express"));
+const books_controller_1 = require("./books.controller");
+const router = express_1.default.Router();
+router.post("/uploadBook", books_controller_1.BooksController.uploadBook);
+router.get("/getAllBooks", books_controller_1.BooksController.getAllBooks);
+router.get("/getBookById/:id", books_controller_1.BooksController.getBookById);
+router.get("/getEpisodeCountById/:id", books_controller_1.BooksController.getEpisodeCountById);
+router.patch("/updateBook", books_controller_1.BooksController.updateBook);
+router.patch("/addAct/:id", books_controller_1.BooksController.addActToBook);
+router.patch("/addChapter/:id", books_controller_1.BooksController.addChapterToAct);
+router.patch("/addEpisode/:id", books_controller_1.BooksController.addEpisodeToChapter);
+router.delete("/deleteBook/:id", books_controller_1.BooksController.deleteBook);
+router.get("/getBooksTitle", books_controller_1.BooksController.getBooksTitle);
+router.get("/getLatestEpisode", books_controller_1.BooksController.getLatestEpisode);
+router.get("/getFormattedBookById/:id", books_controller_1.BooksController.getFormattedBookById);
+exports.BooksRouter = router;

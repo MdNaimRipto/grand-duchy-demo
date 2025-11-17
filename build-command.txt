@@ -1,0 +1,8 @@
+SECRET_KEY="c761296e5ca0f921d2b5df514cc4da7228cba62c5780b064827aa40d6419fcde" \
+BASE_URL="https://thegranduchy.com" \
+AUTH_SECRET="57dbdafa4d619a38c95d85aab45fa5ed" \
+SECRET="57dbdafa4d619a38c95d85aab45fa5ed" \
+GOOGLE_ID="252300527273-bfdpnm0qup5qt73bgk323j6q1rn7qq39.apps.googleusercontent.com" \
+GOOGLE_SECRET="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" \
+IMAGE_BB_SECRET="1d44767fb48cc55b5c4ab2cc524f69cd" \
+npm run build

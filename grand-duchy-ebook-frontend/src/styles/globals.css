@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Special+Elite&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "aflfont";
+  src: local("aflfont"), url(../assets/fonts/aflfont.TTF) format("ttf");
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* user-select: none; */
+}
+
+body {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+}
+
+.titleFont {
+  font-family: "IM Fell English", serif;
+  font-weight: 400;
+  font-style: normal;
+  /* color: #0b0109; */
+}
+
+.textFont {
+  font-family: "aflfont";
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  text-align: justify;
+}
+
+/* Custom Styles  */
+.customLeftRightPadding {
+  padding-left: clamp(16px, 4.2440318302vw, 64px);
+  padding-right: clamp(16px, 4.2440318302vw, 64px);
+}
+
+.bgImage {
+  background-image: url("../assets/images/bg2.webp");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bgTransparent {
+  background-color: transparent !important;
+}
+
+/* Theme Toggler Button */
+.css-19opgx6-MuiFormControlLabel-root {
+  margin-right: 0px !important;
+}
+
+.css-wz5myd {
+  margin-right: 0px !important;
+}
+
+/* Bookmark masonary */
+/* .css-1br2y3i-MuiMasonry-root,
+.css-1m19rf7-MuiMasonry-root,
+.css-wt13zq-MuiMasonry-root,
+.css-iii1u3-MuiMasonry-root {
+  margin: 0px !important;
+} */
