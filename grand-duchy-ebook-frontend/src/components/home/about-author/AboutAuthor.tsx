@@ -8,7 +8,7 @@ const AboutAuthor = () => {
         Author
       </h3>
 
-      <div className="md:-mt-24 lg:-mt-32 grid md:grid-cols-2 items-center gap-8 xl:gap-0 justify-items-center">
+      <div className="md:-mt-24 lg:-mt-32 grid md:grid-cols-2 items-center gap-8 xl:gap-0 justify-items-center 2xl:px-36">
         <div className="md:hidden w-full h-full object-cover  grayscale">
           <Image src={author} alt="" className="w-full h-full object-cover" />
         </div>
