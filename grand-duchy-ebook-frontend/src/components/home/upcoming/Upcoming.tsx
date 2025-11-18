@@ -13,7 +13,6 @@ const Upcoming = () => {
 
   return (
     <div
-      className="mb-16"
       style={{
         background: `
   linear-gradient(

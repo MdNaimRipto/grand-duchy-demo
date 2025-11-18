@@ -3,7 +3,7 @@ import banner from "@/assets/images/about-grand-duchy.webp";
 
 const AboutGrandDuchy = () => {
   return (
-    <section className="my-20 px-4">
+    <section className="mt-20 px-4">
       <div className="mx-auto max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         {/* Image */}
         <div className="w-full h-[350px] md:h-[700px] overflow-hidden">
@@ -16,7 +16,7 @@ const AboutGrandDuchy = () => {
 
         {/* Text Content */}
         <div className="flex flex-col gap-6">
-          <h1 className="titleFont text-3xl md:text-4xl font-semibold">
+          <h1 className="titleFont text-3xl md:text-4xl lg:text-5xl font-semibold">
             About Grand Duchy
           </h1>
 
