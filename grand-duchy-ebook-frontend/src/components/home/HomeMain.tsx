@@ -3,7 +3,6 @@ import AboutAuthor from "./about-author/AboutAuthor";
 import AboutGrandDuchy from "./about-grand-duchy/AboutGrandDuchy";
 import Banner from "./banner/Banner";
 import Books from "./books/Books";
-import Reviews from "./reviews/Reviews";
 import ShareThoughts from "./share-thoughts/ShareThoughts";
 import Upcoming from "./upcoming/Upcoming";
 
@@ -16,7 +15,6 @@ const HomeMain = () => {
         <Books />
         <Upcoming />
         <AboutAuthor />
-        <Reviews />
         <ShareThoughts />
       </>
     </OpacityAnimation>
