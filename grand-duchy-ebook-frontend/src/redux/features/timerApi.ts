@@ -1,5 +1,5 @@
 import { apiConfig } from "@/configs/apiConfig";
-
+import { IUser } from "@/types/userTypes";
 import { timerApiSlice } from "../apis/timerApiSlice";
 import Cookies from "js-cookie";
 
