@@ -5,11 +5,12 @@ import { Autoplay, Mousewheel } from "swiper/modules";
 import { useGetBooksQuery } from "@/redux/features/booksApi";
 import Loader from "@/common/loader/Loader";
 import { IBooks } from "@/types/bookTypes";
+import placeholder from "@/assets/images/placeholder.png";
 
 const Books = () => {
   const { data, isLoading, isError } = useGetBooksQuery({});
   if (isLoading) {
-    return <Loader />;
+    return <div></div>;
   }
 
   if (!data || isError) {
@@ -50,9 +51,11 @@ const Books = () => {
                     className="w-full h-full object-contain"
                     src={data.image}
                     alt={data.title}
-                    priority={true}
+                    priority
                     width={600}
                     height={600}
+                    placeholder="blur"
+                    blurDataURL={placeholder.src}
                   />
                 </div>
               </Link>

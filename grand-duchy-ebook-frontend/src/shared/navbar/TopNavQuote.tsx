@@ -23,7 +23,7 @@ const TopNavQuote = ({
 
   if (isLoading) {
     return (
-      <div className="w-full col-span-2 flex items-center gap-4">
+      <div className="w-full col-span-2 hidden lg:flex items-center gap-4">
         <div>
           <Skeleton
             variant="rectangular"
@@ -61,7 +61,7 @@ const TopNavQuote = ({
   }
 
   return (
-    <div className="col-span-2 flex items-center justify-start gap-4">
+    <div className="col-span-2 hidden lg:flex items-center justify-start gap-4">
       <FaQuoteLeft className="text-darkPaper text-[40px] hidden md:block" />
 
       <motion.p
