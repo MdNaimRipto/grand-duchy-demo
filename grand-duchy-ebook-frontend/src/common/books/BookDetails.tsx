@@ -3,11 +3,14 @@ import {
   useGetEpisodeCountByIdQuery,
 } from "@/redux/features/booksApi";
 import { IBookDetails } from "@/types/bookTypes";
-import React, { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
+import React, { Fragment, useEffect, useState } from "react";
 import FetchBookDetails from "./FetchBookDetails";
 import Loader from "../loader/Loader";
 import { IReadList } from "@/types/readListTypes";
-
+import { apiConfig } from "@/configs/apiConfig";
+import { useUserContext } from "@/context/AuthContext";
+import { IUser } from "@/types/userTypes";
 import { useParams } from "next/navigation";
 import ComingSoonPage from "../ComingSoonPage";
 
@@ -21,6 +24,8 @@ const BookDetails = ({
   const [currentEpisodeTitle, setCurrentEpisodeTitle] = useState<string | null>(
     null
   );
+
+  const { user } = useUserContext();
 
   const { bookId } = useParams();
 

@@ -3,6 +3,13 @@ import userImage from "@/assets/images/user.webp";
 import { Button } from "@mui/material";
 import { colorConfig } from "@/configs/colorConfig";
 import Link from "next/link";
+import { useUserContext } from "@/context/AuthContext";
+import { IUser } from "@/types/userTypes";
+import { useState } from "react";
+import { signOut } from "next-auth/react";
+import { UseCommonImports } from "@/utils/UseCommonImports";
+import { SuccessToast } from "@/common/toasts/SuccessToast";
+import Loader from "@/common/loader/Loader";
 import { useGetQuotesQuery } from "@/redux/features/quoteApi";
 import { IQuote } from "@/types/quotesType";
 import logo from "@/assets/images/GrayishoneblackMOREGRASTROKED.png";
@@ -16,6 +23,11 @@ const TopNav = ({
   setUiTheme: any;
   uiTheme: "light" | "dark";
 }) => {
+  const { user, setUser } = useUserContext();
+  const { Cookies } = UseCommonImports();
+  const typedUser = user as IUser;
+
+  const [isLoading, setIsLoading] = useState(false);
   const { data, isLoading: isQuoteLoading, error } = useGetQuotesQuery({});
 
   if (!data || error) {
@@ -27,6 +39,23 @@ const TopNav = ({
   };
 
   const quotes = shuffleArray(data?.data as IQuote[]);
+
+  const handleLogout = () => {
+    setIsLoading(true);
+
+    setTimeout(() => {
+      signOut({ redirect: false });
+      window.sessionStorage.clear();
+    }, 500);
+
+    setTimeout(() => {
+      Cookies.remove("userData");
+      Cookies.remove("token");
+      setUser(null);
+      SuccessToast("Logout Successful!");
+      setIsLoading(false);
+    }, 1000);
+  };
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-4">
@@ -43,22 +72,44 @@ const TopNav = ({
           <div className="lg:hidden">
             <ThemeToggler setUiTheme={setUiTheme} uiTheme={uiTheme} />
           </div>
-          <Link href="https://grand-duchy-ebook.vercel.app" target="_blank">
+          {user && (
+            <>
+              <div className="w-8 md:w-10 rounded-full overflow-hidden mr-2">
+                <Image src={userImage} alt="User Image" />
+              </div>
+              <p className="hidden md:block text-sm">{typedUser.userName}</p>
+            </>
+          )}
+          {!user ? (
+            <Link href="/auth/login">
+              <Button
+                sx={{
+                  backgroundColor: colorConfig.primary,
+                  color: colorConfig.white,
+                  textTransform: "capitalize",
+                  fontWeight: "600",
+                  fontSize: {
+                    xs: "0.7rem",
+                    sm: "0.875rem",
+                  },
+                }}
+              >
+                Join to track last read
+              </Button>
+            </Link>
+          ) : (
             <Button
+              onClick={handleLogout}
               sx={{
-                backgroundColor: colorConfig.primary,
+                backgroundColor: colorConfig.darkPaper,
                 color: colorConfig.white,
                 textTransform: "capitalize",
                 fontWeight: "600",
-                fontSize: {
-                  xs: "0.7rem",
-                  sm: "0.875rem",
-                },
               }}
             >
-              Visit The Grand Duchy
+              {isLoading ? "Logging Out..." : "Logout"}
             </Button>
-          </Link>
+          )}
         </div>
       </div>
       {/* Quote */}
@@ -69,8 +120,30 @@ const TopNav = ({
         </div>
 
         <div className="hidden lg:flex items-center justify-end gap-1 md:gap-4">
-          <Link href="https://grand-duchy-ebook.vercel.app" target="_blank">
+          {user && (
+            <>
+              <div className="w-8 md:w-10 rounded-full overflow-hidden">
+                <Image src={userImage} alt="User Image" />
+              </div>
+              <p className="hidden md:block text-sm">{typedUser.userName}</p>
+            </>
+          )}
+          {!user ? (
+            <Link href="/auth/login">
+              <Button
+                sx={{
+                  backgroundColor: colorConfig.darkPaper,
+                  color: colorConfig.white,
+                  textTransform: "capitalize",
+                  fontWeight: "600",
+                }}
+              >
+                Join to track last read
+              </Button>
+            </Link>
+          ) : (
             <Button
+              onClick={handleLogout}
               sx={{
                 backgroundColor: colorConfig.darkPaper,
                 color: colorConfig.white,
@@ -78,9 +151,9 @@ const TopNav = ({
                 fontWeight: "600",
               }}
             >
-              Visit The Grand Duchy
+              {isLoading ? "Logging Out..." : "Logout"}
             </Button>
-          </Link>
+          )}
         </div>
       </div>
     </div>
