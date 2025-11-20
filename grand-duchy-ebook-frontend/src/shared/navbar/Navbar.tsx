@@ -27,7 +27,6 @@ const Navbar = ({
 }) => {
   const router = useRouter();
   const [openFontModal, setOpenFontModal] = useState(false);
-  const [openTimerModal, setOpenTimerModal] = useState(false);
 
   const { user } = useUserContext();
   const typedUser = user as IUser;
@@ -119,8 +118,8 @@ const Navbar = ({
 
         <div className="mt-8">
           <IconButton
-            className="text-2xl rounded-full transition-all"
-            onClick={() => setOpenTimerModal(true)}
+            disabled
+            className="text-2xl rounded-full transition-all disabled:opacity-40 disabled:cursor-not-allowed"
           >
             <MdOutlineWatchLater
               className={`${uiTheme === "light" ? "text-black" : "text-white"}`}
