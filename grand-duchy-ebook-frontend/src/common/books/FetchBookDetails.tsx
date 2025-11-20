@@ -2,12 +2,9 @@ import { IBookDetails } from "@/types/bookTypes";
 import { CircularProgress } from "@mui/material";
 import React, { Fragment, useEffect, useState } from "react";
 import EpisodeContent from "./EpisodeContent";
-import { useUserContext } from "@/context/AuthContext";
-import { IUser } from "@/types/userTypes";
+
 import { colorConfig } from "@/configs/colorConfig";
 import { IReadList } from "@/types/readListTypes";
-import { apiConfig } from "@/configs/apiConfig";
-import ComingSoonPage from "../ComingSoonPage";
 
 const FetchBookDetails = ({
   book,
@@ -19,7 +16,6 @@ const FetchBookDetails = ({
   bookId,
   readListDetails,
   setCurrentEpisodeTitle,
-  readListRefetch,
 }: {
   book: IBookDetails;
   epIndex: number;
@@ -32,45 +28,12 @@ const FetchBookDetails = ({
   setCurrentEpisodeTitle: any;
   readListRefetch: any;
 }) => {
-  const { user } = useUserContext();
-  const typedUser = user as IUser;
-
   const storedFont = JSON.parse(
     window.localStorage.getItem("fontSize") as string
   );
   const [localFontSize, setLocalFontSize] = useState(
     storedFont ? storedFont : "18"
   );
-
-  useEffect(() => {
-    // Update the read list after episode is loaded
-    const handleUpdateReadList = async () => {
-      const data = {
-        bookId: bookId,
-        currentIndex: epIndex,
-        email: typedUser.email,
-        lastEpisodeTitle: book.episodes[book.episodes.length - 1].episodeTitle,
-      };
-
-      const res = await fetch(apiConfig.BASE_URL + apiConfig.READ_LIST.CREATE, {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await res.json();
-      if (result.success) {
-        readListRefetch();
-      }
-      // Handle the result if necessary
-    };
-
-    if (user && book.episodes.length) {
-      handleUpdateReadList();
-    }
-  }, [epIndex, bookId, user, typedUser, book.episodes, readListRefetch]);
 
   // Scroll effect when readListDetails is available
   useEffect(() => {
@@ -131,11 +94,7 @@ const FetchBookDetails = ({
           id="book-content"
           className={`mt-6 space-y-6 leading-relaxed textFont`}
           style={{
-            fontSize: typedUser
-              ? typedUser.fontSize
-              : localFontSize
-              ? `${localFontSize}px`
-              : "18px",
+            fontSize: localFontSize ? `${localFontSize}px` : "18px",
           }}
           dangerouslySetInnerHTML={{ __html: book.prologue }}
         />

@@ -11,26 +11,13 @@ import { GoBook } from "react-icons/go";
 import { IoHomeOutline } from "react-icons/io5";
 import { useRouter } from "next/router";
 import { colorConfig } from "@/configs/colorConfig";
-import { LuLayoutDashboard } from "react-icons/lu";
 import { IconButton, Tooltip } from "@mui/material";
 import FontModal from "@/common/FontModal";
-import { useUserContext } from "@/context/AuthContext";
-import { IUser } from "@/types/userTypes";
-import TimerModal from "./TimerModal";
 
-const Navbar = ({
-  setUiTheme,
-  uiTheme,
-}: {
-  setUiTheme: any;
-  uiTheme: "light" | "dark";
-}) => {
+const Navbar = ({ uiTheme }: { uiTheme: "light" | "dark" }) => {
   const router = useRouter();
   const [openFontModal, setOpenFontModal] = useState(false);
   const [openTimerModal, setOpenTimerModal] = useState(false);
-
-  const { user } = useUserContext();
-  const typedUser = user as IUser;
 
   const handleClose = () => setOpenFontModal(false);
   const navData = [
@@ -41,7 +28,11 @@ const Navbar = ({
 
   return (
     <>
-      <div className="min-h-screen fixed w-[60px] shadow-md px-2 flex flex-col justify-center items-center">
+      <div
+        className={`min-h-screen fixed w-[60px] shadow-md px-2 flex flex-col justify-center items-center ${
+          uiTheme === "light" ? "bg-paper" : "bg-customBlack"
+        }`}
+      >
         <Link
           href={"/"}
           className="hidden lg:block absolute top-4 left-1/2 transform -translate-x-1/2"
@@ -50,7 +41,7 @@ const Navbar = ({
             className="w-full h-full"
             src={logo}
             alt="The Grand duchy logo"
-            priority={true}
+            priority
           />
         </Link>
         <div className="flex flex-col gap-8">
@@ -88,38 +79,12 @@ const Navbar = ({
               </Tooltip>
             </Link>
           ))}
-          {user && typedUser?.userType === "ADMIN" && (
-            <Link
-              href={"/dashboard?tab=0"}
-              className={`text-2xl rounded-full ${
-                router.pathname === "/dashboard"
-                  ? "bg-gray text-white"
-                  : uiTheme === "light"
-                  ? "text-black"
-                  : "text-white"
-              }`}
-            >
-              <Tooltip title={"Dashboard"}>
-                <IconButton
-                  sx={{
-                    color:
-                      router.pathname === "/dashboard"
-                        ? colorConfig.white
-                        : uiTheme === "light"
-                        ? colorConfig.black
-                        : colorConfig.white,
-                  }}
-                >
-                  <LuLayoutDashboard />
-                </IconButton>
-              </Tooltip>
-            </Link>
-          )}
         </div>
 
         <div className="mt-8">
           <IconButton
-            className="text-2xl rounded-full transition-all"
+            disabled
+            className="text-2xl rounded-full transition-all disabled:opacity-40 disabled:cursor-not-allowed"
             onClick={() => setOpenTimerModal(true)}
           >
             <MdOutlineWatchLater
@@ -147,7 +112,6 @@ const Navbar = ({
       {openFontModal && (
         <FontModal handleClose={handleClose} open={openFontModal} />
       )}
-      {openTimerModal && <TimerModal setOpenTimerModal={setOpenTimerModal} />}
     </>
   );
 };

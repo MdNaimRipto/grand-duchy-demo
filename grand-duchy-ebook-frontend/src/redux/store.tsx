@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { userApiSlice } from "./apis/userApiSlice";
 import { bookApiSlice } from "./apis/bookApiSlice";
 import { summaryApiSlice } from "./apis/summaryApiSlice";
 import { readListApiSlice } from "./apis/readListApiSlice";
@@ -9,7 +8,6 @@ import { timerApiSlice } from "./apis/timerApiSlice";
 
 export const store = configureStore({
   reducer: {
-    [userApiSlice.reducerPath]: userApiSlice.reducer,
     [bookApiSlice.reducerPath]: bookApiSlice.reducer,
     [summaryApiSlice.reducerPath]: summaryApiSlice.reducer,
     [readListApiSlice.reducerPath]: readListApiSlice.reducer,
@@ -19,7 +17,6 @@ export const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
-      userApiSlice.middleware,
       bookApiSlice.middleware,
       summaryApiSlice.middleware,
       readListApiSlice.middleware,
