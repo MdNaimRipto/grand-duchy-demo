@@ -1,4 +1,24 @@
-import { Box, Typography, Modal, Button } from "@mui/material";
+import { useUserContext } from "@/context/AuthContext";
+import { IUser } from "@/types/userTypes";
+import {
+  ClickAwayListener,
+  Box,
+  Typography,
+  CircularProgress,
+  Modal,
+  Button,
+} from "@mui/material";
+
+import React, { RefObject, useState } from "react";
+import { ErrorToast } from "./toasts/ErrorToast";
+import { useUpdateFontMutation } from "@/redux/features/userApi";
+import {
+  IApiErrorResponse,
+  IApiSuccessResponse,
+} from "@/types/apiResponseTypes";
+import { SuccessToast } from "./toasts/SuccessToast";
+import { UseCommonImports } from "@/utils/UseCommonImports";
+import { decryptData } from "@/components/auth/userEncription";
 import { colorConfig } from "@/configs/colorConfig";
 
 interface FontModalProps {
@@ -7,6 +27,13 @@ interface FontModalProps {
 }
 
 const FontModal: React.FC<FontModalProps> = ({ handleClose, open }) => {
+  const { user, setUser } = useUserContext();
+  const { Cookies } = UseCommonImports();
+
+  const typedUser = user as IUser;
+
+  const [isLoading, setIsLoading] = useState(false);
+
   const fontSizes = [
     {
       title: "Small",
@@ -26,9 +53,43 @@ const FontModal: React.FC<FontModalProps> = ({ handleClose, open }) => {
     },
   ];
 
+  const [updateFont] = useUpdateFontMutation();
+
   const handleUpdateFont = async (font: number) => {
-    window.localStorage.setItem("fontSize", JSON.stringify(font));
-    window.dispatchEvent(new Event("fontSizeUpdated"));
+    if (!user) {
+      window.localStorage.setItem("fontSize", JSON.stringify(font));
+      window.dispatchEvent(new Event("fontSizeUpdated"));
+      return;
+    }
+
+    const option = {
+      data: {
+        email: typedUser.email,
+        fontSize: font,
+      },
+    };
+    try {
+      setIsLoading(true);
+
+      const res: IApiSuccessResponse = await updateFont(option).unwrap();
+      if (res.success) {
+        SuccessToast(res.message);
+
+        const userData = decryptData(String(res.data?.userData));
+        setUser(userData);
+
+        Cookies.set("userData", String(res.data?.userData), {
+          expires: 3,
+        });
+        Cookies.set("token", String(res.data?.token), { expires: 3 });
+        handleClose();
+      }
+    } catch (e) {
+      const error = e as IApiErrorResponse;
+      ErrorToast(error?.data?.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -45,39 +106,45 @@ const FontModal: React.FC<FontModalProps> = ({ handleClose, open }) => {
           outline: "none",
         }}
       >
-        <>
-          <Typography
-            variant="subtitle2"
-            className="titleFont"
-            sx={{
-              mb: "8px",
-              fontSize: "20px",
-              fontWeight: 600,
-              textAlign: "center",
-              fontFamily: "IM Fell English",
-            }}
-          >
-            Choose Font Size
-          </Typography>
-          <div className="flex flex-col gap-2">
-            {fontSizes.map((font, i) => (
-              <Button
-                sx={{
-                  color: colorConfig.black,
-                  borderColor: colorConfig.primary,
-                }}
-                onClick={() => handleUpdateFont(font.value)}
-                key={i}
-                className="textFont rounded-md hover:bg-gray text-primary hover:text-white "
-                style={{ fontSize: font.value, textTransform: "none" }}
-                fullWidth
-                variant="outlined"
-              >
-                {font.title}
-              </Button>
-            ))}
+        {isLoading ? (
+          <div className="flex items-center justify-center h-[200px]">
+            <CircularProgress />
           </div>
-        </>
+        ) : (
+          <>
+            <Typography
+              variant="subtitle2"
+              className="titleFont"
+              sx={{
+                mb: "8px",
+                fontSize: "20px",
+                fontWeight: 600,
+                textAlign: "center",
+                fontFamily: "IM Fell English",
+              }}
+            >
+              Choose Font Size
+            </Typography>
+            <div className="flex flex-col gap-2">
+              {fontSizes.map((font, i) => (
+                <Button
+                  sx={{
+                    color: colorConfig.black,
+                    borderColor: colorConfig.primary,
+                  }}
+                  onClick={() => handleUpdateFont(font.value)}
+                  key={i}
+                  className="textFont rounded-md hover:bg-gray text-primary hover:text-white "
+                  style={{ fontSize: font.value, textTransform: "none" }}
+                  fullWidth
+                  variant="outlined"
+                >
+                  {font.title}
+                </Button>
+              ))}
+            </div>
+          </>
+        )}
       </Box>
     </Modal>
   );

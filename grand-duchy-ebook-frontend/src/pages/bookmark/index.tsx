@@ -11,7 +11,13 @@ import Paper from "@mui/material/Paper";
 import Masonry from "@mui/lab/Masonry";
 import { colorConfig } from "@/configs/colorConfig";
 import OpacityAnimation from "@/components/animation/OpacityAnimation";
-import { useMediaQuery, FormControl, MenuItem, Select } from "@mui/material";
+import {
+  useMediaQuery,
+  FormControl,
+  MenuItem,
+  Select,
+  InputLabel,
+} from "@mui/material";
 import Image from "next/image";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -26,6 +32,10 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 const Bookmark = () => {
+  const storedTheme = window.localStorage.getItem("theme");
+  const [uiTheme, setUiTheme] = useState<"dark" | "light">(
+    storedTheme && storedTheme === "dark" ? "dark" : "light"
+  );
   const isMobile = useMediaQuery("(max-width: 640px)");
   const isTablet = useMediaQuery("(max-width: 1024px)");
 

@@ -3,18 +3,18 @@ import { ReactElement } from "react";
 import BookDetails from "@/common/books/BookDetails";
 import { useGetReadListDetailsQuery } from "@/redux/features/readListApi";
 import { IReadList } from "@/types/readListTypes";
+import { useUserContext } from "@/context/AuthContext";
+import { useParams } from "next/navigation";
 import OpacityAnimation from "@/components/animation/OpacityAnimation";
 import Loader from "@/common/loader/Loader";
-import { useRouter } from "next/router";
 
 const Books = () => {
-  const router = useRouter();
-  const { bookId } = router.query;
+  const { user } = useUserContext();
 
-  console.log({ bookId });
+  const { bookId } = useParams();
 
   const { data, isLoading, refetch } = useGetReadListDetailsQuery({
-    email: "",
+    email: user ? user.email : "",
     bookId: String(bookId),
   });
 
