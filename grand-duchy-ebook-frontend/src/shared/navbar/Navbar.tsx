@@ -17,7 +17,6 @@ import FontModal from "@/common/FontModal";
 const Navbar = ({ uiTheme }: { uiTheme: "light" | "dark" }) => {
   const router = useRouter();
   const [openFontModal, setOpenFontModal] = useState(false);
-  const [openTimerModal, setOpenTimerModal] = useState(false);
 
   const handleClose = () => setOpenFontModal(false);
   const navData = [
@@ -85,7 +84,6 @@ const Navbar = ({ uiTheme }: { uiTheme: "light" | "dark" }) => {
           <IconButton
             disabled
             className="text-2xl rounded-full transition-all disabled:opacity-40 disabled:cursor-not-allowed"
-            onClick={() => setOpenTimerModal(true)}
           >
             <MdOutlineWatchLater
               className={`${uiTheme === "light" ? "text-black" : "text-white"}`}
