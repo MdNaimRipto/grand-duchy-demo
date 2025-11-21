@@ -81,7 +81,7 @@ const TopNav = ({
             </>
           )}
           {!user ? (
-            <Link href="/auth/login">
+            <Link href="https://grand-duchy-ebook.vercel.app/" target="_blank">
               <Button
                 sx={{
                   backgroundColor: colorConfig.primary,
@@ -94,7 +94,7 @@ const TopNav = ({
                   },
                 }}
               >
-                Join to track last read
+                Visit Grand Duchy
               </Button>
             </Link>
           ) : (
@@ -129,7 +129,7 @@ const TopNav = ({
             </>
           )}
           {!user ? (
-            <Link href="/auth/login">
+            <Link href="https://grand-duchy-ebook.vercel.app/" target="_blank">
               <Button
                 sx={{
                   backgroundColor: colorConfig.darkPaper,
@@ -138,7 +138,7 @@ const TopNav = ({
                   fontWeight: "600",
                 }}
               >
-                Join to track last read
+                Visit Grand Duchy
               </Button>
             </Link>
           ) : (
