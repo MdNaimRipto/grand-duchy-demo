@@ -146,7 +146,6 @@ const Navbar = ({
       {openFontModal && (
         <FontModal handleClose={handleClose} open={openFontModal} />
       )}
-      {openTimerModal && <TimerModal setOpenTimerModal={setOpenTimerModal} />}
     </>
   );
 };
