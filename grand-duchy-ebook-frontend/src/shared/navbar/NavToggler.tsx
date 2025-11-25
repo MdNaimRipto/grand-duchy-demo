@@ -13,9 +13,9 @@ const NavToggler = ({ isOpen, setIsOpen }: NavTogglerProps) => {
       onClick={() => setIsOpen(!isOpen)}
       sx={{
         position: "fixed",
-        bottom: 55,
+        bottom: 25,
         right: 5,
-        background: `linear-gradient(45deg, ${colorConfig.gray}, ${colorConfig.gray}) !important`,
+        background: `linear-gradient(45deg, ${colorConfig.darkPaper}, ${colorConfig.darkPaper}) !important`,
         borderRadius: 1,
         zIndex: 1,
       }}

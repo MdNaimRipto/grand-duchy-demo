@@ -5,7 +5,7 @@ const ShareThoughts = () => {
   return (
     <div className="container flex flex-col justify-center items-center h-[600px] gap-4 mt-8">
       <h5 className="titleFont text-5xl text-center">Share Your Thoughts</h5>
-      <form className="w-full lg:w-[30%] mt-6 flex flex-col gap-4">
+      <form className="w-full lg:w-3/5 xl:w-[30%] mt-6 flex flex-col gap-4">
         <div>
           <label className="mb-2 block titleFont text-lg">Username</label>
           <input
