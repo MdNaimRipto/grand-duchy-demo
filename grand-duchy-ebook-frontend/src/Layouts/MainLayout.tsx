@@ -101,11 +101,7 @@ const MainLayout = ({ children }: { children: ReactElement }) => {
         </div>
 
         {/* Mobile Nav */}
-        <div
-          className={`lg:hidden transition-opacity duration-500 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`}
-        >
+        <div className={`lg:hidden`}>
           <NavToggler isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
       </div>

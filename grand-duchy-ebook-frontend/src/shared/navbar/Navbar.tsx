@@ -40,7 +40,11 @@ const Navbar = ({
 
   return (
     <>
-      <div className="min-h-screen fixed w-[60px] shadow-md px-2 flex flex-col justify-center items-center">
+      <div
+        className={`min-h-screen fixed w-[60px] shadow-md px-2 flex flex-col justify-center items-center ${
+          uiTheme === "dark" ? "bg-customBlack" : "bg-paper"
+        }`}
+      >
         <Link
           href={"/"}
           className="hidden lg:block absolute top-4 left-1/2 transform -translate-x-1/2"

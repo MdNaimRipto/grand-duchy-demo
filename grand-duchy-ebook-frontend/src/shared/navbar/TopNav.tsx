@@ -84,7 +84,7 @@ const TopNav = ({
             <Link href="https://grand-duchy-ebook.vercel.app/" target="_blank">
               <Button
                 sx={{
-                  backgroundColor: colorConfig.primary,
+                  backgroundColor: colorConfig.darkPaper,
                   color: colorConfig.white,
                   textTransform: "capitalize",
                   fontWeight: "600",
